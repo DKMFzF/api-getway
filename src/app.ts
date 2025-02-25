@@ -1,9 +1,9 @@
-const express = require('express');
-const axios = require('axios');
-const cors = require('cors'); // подключаем пакет cors
+import express, { Request, Response } from 'express';
+import axios, { AxiosError } from 'axios';
+import cors from 'cors';
 
 const app = express();
-app.use(cors()); // разрешаем CORS для всех запросов
+app.use(cors());
 app.use(express.json());
 
 // Используем docker DNS имена для микросервисов
@@ -11,33 +11,36 @@ const AUTH_SERVICE_URL = 'http://auth-service:3000';
 const USER_SERVICE_URL = 'http://user-service:4000';
 
 // Прокси-эндпоинт для логина:
-app.post('/login', async (req, res) => {
+app.post('/login', async (req: Request, res: Response) => {
     try {
         const response = await axios.post(`${AUTH_SERVICE_URL}/login`, req.body);
         res.json(response.data);
     } catch (error) {
-        console.error('Ошибка при запросе в Auth Service:', error.message);
-        res.status(error.response ? error.response.status : 500).json(
-            error.response ? error.response.data : { error: error.message }
+        const axiosError = error as AxiosError;
+        console.error('Ошибка при запросе в Auth Service:', axiosError.message);
+        res.status(axiosError.response?.status || 500).json(
+            axiosError.response?.data || { error: axiosError.message }
         );
     }
 });
 
 // Прокси-эндпоинт для регистрации:
-app.post('/register', async (req, res) => {
+app.post('/register', async (req: Request, res: Response) => {
     try {
         const response = await axios.post(`${USER_SERVICE_URL}/register`, req.body);
         res.json(response.data);
     } catch (error) {
-        console.error('Ошибка при запросе в User Service:', error.message);
-        res.status(error.response ? error.response.status : 500).json(
-            error.response ? error.response.data : { error: error.message }
+        const axiosError = error as AxiosError;
+        console.error('Ошибка при запросе в User Service:', axiosError.message);
+        res.status(axiosError.response?.status || 500).json(
+            axiosError.response?.data || { error: axiosError.message }
         );
     }
 });
 
 // Прокси-эндпоинт для защищённого ресурса:
-app.get('/protected', async (req, res) => {
+// @ts-ignore
+app.get('/protected', async (req: Request, res: Response) => {
     console.log(req.headers.authorization);
     try {
         const token = req.headers.authorization;
@@ -49,9 +52,10 @@ app.get('/protected', async (req, res) => {
         });
         res.json(response.data);
     } catch (error) {
-        console.error('Ошибка при запросе в Auth Service (protected):', error.message);
-        res.status(error.response ? error.response.status : 500).json(
-            error.response ? error.response.data : { error: error.message }
+        const axiosError = error as AxiosError;
+        console.error('Ошибка при запросе в Auth Service (protected):', axiosError.message);
+        res.status(axiosError.response?.status || 500).json(
+            axiosError.response?.data || { error: axiosError.message }
         );
     }
 });
