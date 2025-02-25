@@ -1,6 +1,6 @@
 {
   "name": "user-authorization-service",
-  "version": "2.0.0",
+  "version": "1.0.0",
   "main": "dist/app.js",
   "scripts": {
     "start": "node dist/app.js",
@@ -12,7 +12,7 @@
     "url": "git+https://github.com/DKMFzF/user-authorization-service.git"
   },
   "author": "dkmfzf",
-  "license": "MIT",
+  "license": "ISC",
   "bugs": {
     "url": "https://github.com/DKMFzF/user-authorization-service/issues"
   },
@@ -29,7 +29,6 @@
     "@types/cors": "^2.8.17",
     "@types/express": "^4.17.21",
     "@types/node": "^20.11.19",
-    "@types/axios": "^1.7.9",
     "typescript": "^5.3.3",
     "tsc-watch": "^6.0.4"
   }

@@ -14,6 +14,10 @@ console.log("[LOG]: app start");
 const AUTH_SERVICE_URL = 'http://auth-service:3000';
 const USER_SERVICE_URL = 'http://user-service:4000';
 
+// локальная отладка 
+// const AUTH_SERVICE_URL = 'http://http://localhost:5000:3000';
+// const USER_SERVICE_URL = 'http://http://localhost:5000:4000';
+
 // Прокси-эндпоинт для логина
 app.post('/login', async (req: Request, res: Response) => {
     
@@ -25,7 +29,7 @@ app.post('/login', async (req: Request, res: Response) => {
     } catch (error) {
         const axiosError = error as AxiosError;
        
-        console.error('Ошибка при запросе в Auth Service:', axiosError.message);
+        console.error('[ERROR]: err for feth in Auth Service:', axiosError.message);
         
         res.status(axiosError.response?.status || 500).json(axiosError.response?.data || { error: axiosError.message });
     }
