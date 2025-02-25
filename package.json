@@ -12,7 +12,7 @@
     "url": "git+https://github.com/DKMFzF/user-authorization-service.git"
   },
   "author": "dkmfzf",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/DKMFzF/user-authorization-service/issues"
   },
