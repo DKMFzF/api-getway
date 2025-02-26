@@ -1,8 +1,8 @@
 import express from "express";
 import cors from "cors";
 import { config } from "./config";
-import authRoutes from "./routes/authRoutes";
-import userRoutes from "./routes/userRoutes";
+import authRoutes from "./routes/auth.routes";
+import userRoutes from "./routes/user.routes";
 import { logger } from "./middleware/logger";
 
 /**
