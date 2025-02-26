@@ -1,0 +1,14 @@
+version: "3.8"
+
+services:
+  api-gateway:
+    build: .
+    ports:
+      - "5000:5000"
+    volumes:
+      - .:/app
+      - /app/node_modules
+    environment:
+      - NODE_ENV=production
+    depends_on: []
+    restart: unless-stopped
