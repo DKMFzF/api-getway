@@ -1,18 +1,27 @@
 import dotenv from "dotenv";
+import { z } from "zod";
 
 dotenv.config();
 
 /**
- * конфиг сервиса
+ * Валидация переменных окружения
  */
+const configSchema = z.object({
+  PORT: z.string().default("5000"),
+  AUTH_SERVICE_URL: z.string().url(),
+  AUTH_SERVICE_ROUTE: z.string().default("/auth"),
+  AUTH_SERVICE_URL_LOGIN: z.string().default("/login"),
+  AUTH_SERVICE_URL_PROTECTED: z.string().default("/protected"),
+  USER_SERVICE_URL: z.string().url(),
+  USER_SERVICE_ROUTE: z.string().default("/user"),
+  USER_SERVICE_URL_REGISTER: z.string().default("/register"),
+});
 
-export const config = {
-    PORT: process.env.PORT || 5000,
-    AUTH_SERVICE_URL: process.env.AUTH_SERVICE_URL || "http://auth-service:3000",
-    AUTH_SERVICE_ROUTE: process.env.AUTH_SERVICE_ROUTE || "/auth",
-    AUTH_SERVICE_URL_LOGIN: process.env.AUTH_SERVICE_URL_LOGIN || "/login",
-    AUTH_SERVICE_URL_PROTECTED: process.env.AUTH_SERVICE_URL_PROTECTED || "/protected",
-    USER_SERVICE_URL: process.env.USER_SERVICE_URL || "http://user-service:4000",
-    USER_SERVICE_ROUTE: process.env.USER_SERVICE_ROUTE || "/user",
-    USER_SERVICE_URL_REGISTER: process.env.USER_SERVICE_URL_REGISTER || "/register",
-};
+const envConfig = configSchema.safeParse(process.env);
+
+if (!envConfig.success) {
+  console.error("[CONFIG ERROR] Invalid environment variables:", envConfig.error.format());
+  process.exit(1);
+}
+
+export const config = envConfig.data;
