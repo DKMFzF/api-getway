@@ -6,6 +6,7 @@ import userRoutes from "./routes/user.routes";
 import { logger } from "./middleware/logging.middleware";
 import { errorHandler } from "./middleware/error.middleware";
 import { rateLimiter } from "./middleware/rateLimiter.middleware";
+import helmet from 'helmet';
 
 /**
  * init service
@@ -18,6 +19,7 @@ app.use(cors());
 app.use(express.json());
 app.use(logger);
 app.use(rateLimiter);
+app.use(helmet());
 
 // Routes
 app.use(config.AUTH_SERVICE_ROUTE, authRoutes);
