@@ -1,5 +1,6 @@
 import app from "./app";
 import { config } from "./config";
+import LOGS from './utils/logs.condition';
 
 /**
  * starting service
@@ -7,6 +8,4 @@ import { config } from "./config";
 
 const PORT = config.PORT;
 
-app.listen(PORT, () => {
-    console.log(`[LOG]: API Gateway running on port ${PORT}`);
-});
+app.listen(PORT, () => console.log(LOGS.START_SERVICE, PORT));
