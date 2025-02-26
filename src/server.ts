@@ -1,6 +1,6 @@
 import app from "./app";
-import { config } from "./config";
-import LOGS from './utils/logs.condition';
+import { config } from "./config/index.config";
+import { LOGS } from './utils/logs.service.condition';
 
 /**
  * starting service

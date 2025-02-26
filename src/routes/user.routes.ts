@@ -1,7 +1,7 @@
 import { Router, Request, Response } from "express";
 import axios from "axios";
-import { config } from "../config";
-import LOGS from "../utils/logs.condition";
+import { config } from "../config/index.config";
+import { LOGS } from "../utils/logs.service.condition";
 
 const router = Router();
 const USER_SERVICE_URL = config.USER_SERVICE_URL;
