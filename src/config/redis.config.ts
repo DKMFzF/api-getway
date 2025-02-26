@@ -13,6 +13,8 @@ export const redis = new Redis({
     port: 6379,
 });
 
+export const requestsRateLimmiter = 8;
+
 // Проверяем подключение
 redis.on("connect", () => console.log(REDIS_LOGS.REDIS_CONNECT));
 redis.on("error", (err) => console.error(REDIS_LOGS.REDIS_CONNECT_ERROR, err));
