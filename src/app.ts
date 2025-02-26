@@ -13,7 +13,7 @@ app.use(express.json());
 app.use(logger);
 
 // Routes
-app.use("/auth", authRoutes);
-app.use("/user", userRoutes);
+app.use(config.AUTH_SERVICE_ROUTE, authRoutes);
+app.use(config.AUTH_SERVICE_ROUTE, userRoutes);
 
 export default app;
