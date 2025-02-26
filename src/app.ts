@@ -5,6 +5,10 @@ import authRoutes from "./routes/authRoutes";
 import userRoutes from "./routes/userRoutes";
 import { logger } from "./middleware/logger";
 
+/**
+ * init service
+ */
+
 const app = express();
 
 // Middlewares
