@@ -9,7 +9,7 @@ const USER_SERVICE_URL = config.USER_SERVICE_URL;
  * логин к сервису авторизации
  */
 
-router.post("/register", async (req: Request, res: Response) => {
+router.post(config.USER_SERVICE_URL_REGISTER, async (req: Request, res: Response) => {
     try {
         const response = await axios.post(`${USER_SERVICE_URL}/register`, req.body);
         res.json(response.data);
