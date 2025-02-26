@@ -18,6 +18,6 @@ app.use(logger);
 
 // Routes
 app.use(config.AUTH_SERVICE_ROUTE, authRoutes);
-app.use(config.AUTH_SERVICE_ROUTE, userRoutes);
+app.use(config.USER_SERVICE_ROUTE, userRoutes);
 
 export default app;
