@@ -1,6 +1,6 @@
 # API Gateway for the Finance Analyzer project
 
-[Дока на русском](./src/docs/README.ru.md)
+[Дока на русском](./docs/README.ru.md)
 
 _The gateway is intended for the Finance Analyzer project, but this does not mean that it can only work in the environment of this project. To use it in another project, it is enough to define your evn environment.__
 
