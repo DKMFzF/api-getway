@@ -12,7 +12,7 @@ export const rateLimiter = async (req: Request, res: Response, next: NextFunctio
 
   // Если первый запрос — устанавливаем TTL (время жизни) ключа в Redis
   if (requests === requestsRateLimmiter) await redis.expire(ip, 60);
-  if (requests > 8) return res.status(429).json({ error: REDIS_LOGS.REDIS_MANY_REQUESTS });
+  if (requests > 100) return res.status(429).json({ error: REDIS_LOGS.REDIS_MANY_REQUESTS });
 
   next();
 };
