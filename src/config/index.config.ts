@@ -15,6 +15,7 @@ const configSchema = z.object({
   USER_SERVICE_URL: z.string().url(),
   USER_SERVICE_ROUTE: z.string().default("/user"),
   USER_SERVICE_URL_REGISTER: z.string().default("/register"),
+  USER_SERVICE_URL_CHANGE_PASS: z.string().default("/change-password"),
 });
 
 const envConfig = configSchema.safeParse(process.env);
